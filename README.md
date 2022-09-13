@@ -148,6 +148,23 @@ You can now view the entire application locally by going to the following urls:
 
 ## Deploy and run for production
 
+For production the only thing needed is to run
+
+```bash
+yarn build:prod
+```
+
+on each project to build it and the built code will be available in the `dist` folder.
+
 <a name="expected-contrib"></a>
 
 ## What is expected from a contributor
+
+To help the process of out team to analyze the proposed contributions, a few things are expected:
+
+-   the contributor owns all the code.
+-   the code was properly tested and has the test file attached to it.
+-   a simple documentation explaining the solution is provided.
+-   a live deployed example of the solution is presented.
+
+If all of the above requirements are not present on the pull request, team will not evaluate the contribution.
