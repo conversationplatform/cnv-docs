@@ -78,7 +78,7 @@ Once you have the code on each repository you can test by following the instruct
 
 <a name="deploy-dev"></a>
 
-## Deploy and run for development
+## Deploy on production with docker-compose
 
 This default setup will bring up all the project dependencies including:
 - arangodb
@@ -106,8 +106,7 @@ Congratulations. 🎉 You should see the following greeting message.
 ![greeting message](assets/images/default_flow.png)
 
 If you see the image above, that means that you are all set. 😉
-
-## Deploy on production with docker-compose
+## Deploy and run for development
 
 To begin with, `git clone` every repository to a folder of your choosing.
 
