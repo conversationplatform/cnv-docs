@@ -99,6 +99,7 @@ You will land on the admin dashboard. use the default user and password set on t
 You can manage all of the settings and flows from the dashboard, but you are free to reach them directly:
 - [app](http://localhost/app/#/default). You may notice the /#/default. The nodered is bundled with a default flow to begin with.
 - have a look around on [Node-red](http://localhost/red/)
+- feel free to explore the middleware [api](http://localhost/api/). There is a lot of cool geek stuff in there 👀
 
 Congratulations. 🎉 You should see the following greeting message.
 
