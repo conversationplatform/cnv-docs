@@ -10,6 +10,10 @@ Before going through the code, we recommend that you first see the [project stru
 
 <a name="project-structure"></a>
 
+## In a rush? 
+
+Jump right into the deployment with docker and docker-compose [Deploy on production with docker-compose](#deploy-on-production-with-docker-compose)
+
 ## Project structure
 
 The whole project is divided in to the following repositories:
@@ -75,6 +79,34 @@ Once you have the code on each repository you can test by following the instruct
 <a name="deploy-dev"></a>
 
 ## Deploy and run for development
+
+This default setup will bring up all the project dependencies including:
+- arangodb
+- cnv-react-app
+- cnv-middleware
+
+```bash
+cd docker
+docker-compose up
+```
+
+Then point your browser to your [localhost](http://localhost)
+
+You will land on the admin dashboard. use the default user and password set on the docker-compose. If you didn't change them use:
+- User: admin
+- Password: secret
+
+You can manage all of the settings and flows from the dashboard, but you are free to reach them directly:
+- [app](http://localhost/app/#/default). You may notice the /#/default. The nodered is bundled with a default flow to begin with.
+- have a look around on [Node-red](http://localhost/red/)
+
+Congratulations. 🎉 You should see the following greeting message.
+
+![greeting message](assets/images/default_flow.png)
+
+If you see the image above, that means that you are all set. 😉
+
+## Deploy on production with docker-compose
 
 To begin with, `git clone` every repository to a folder of your choosing.
 
