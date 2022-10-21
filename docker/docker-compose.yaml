@@ -1,0 +1,67 @@
+version: "2.7"
+
+services:
+  nginx:
+    image: nginx:1.23.2
+    container_name: ingress
+    restart: unless-stopped
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+  cnv-arangodb:
+    container_name: cnv-arangodb
+    image: arangodb:3.10.0
+    restart: on-failure
+    environment:
+      ARANGO_ROOT_PASSWORD: secret
+    ports:
+      - 8529:8529
+    volumes:
+      - ./volumes/cnv-arangodb/arangodb3/data:/var/lib/arangodb3
+      - ./volumes/cnv-arangodb/arangodb3/apps_container:/var/lib/arangodb3-apps
+  cnv-middleware:
+    container_name: cnv-middleware
+    image: europe-west3-docker.pkg.dev/conversation-opensource/cnv-platform-container/cnv-platform-middleware:0.61.0
+    restart: on-failure
+    volumes:
+      - ./volumes/cnv-middleware:/mount/
+      - ./config/nodered/:/mount/flows/
+    environment:
+      # ARANGODB
+      ARANGO_HOST: http://cnv-arangodb:8529
+      ARANGO_USER: root
+      ARANGO_PASSWORD: secret
+      ARANGO_DATABASE: conversation
+
+      # Middleware
+      ADMIN_USER: admin
+      ADMIN_PASSWORD: secret
+      JWT_EXPIRATION_SECONDS: 600s
+      TRACK_LIFETIME_MONTHS: 1
+      ENABLE_CUSTOM_PROPERTIES: true
+
+      # Node-Red sidecar
+      USE_BUNDLED_NODERED: true
+      NODERED_WS_CONNECTION: ws://localhost:8080
+      NODERED_HTTP_CONNECTION: http://localhost:1880
+      NODERED_HOME_DIR: /mount
+      NODERED_FLOW_FILE: flows/flows.json
+      NODERED_ENABLE_PROJECTS: true
+      NODERED_ENABLE_PALLETE: true
+
+    ports:
+      - 3000:3000
+      - 1880:1880
+    depends_on:
+      - "cnv-arangodb"
+
+  cnv-react-app:
+    container_name: cnv-react-app
+    image: europe-west3-docker.pkg.dev/conversation-opensource/cnv-platform-container/cnv-platform:0.33.0
+    restart: on-failure
+
+  cnv-admin-dashboard:
+    container_name: cnv-admin-dashboard
+    image: europe-west3-docker.pkg.dev/conversation-opensource/cnv-platform-container/cnv-platform-dashboard:0.22.0
+    restart: on-failure
