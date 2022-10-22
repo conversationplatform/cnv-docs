@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: arango 
+  name: cnv-arangodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: arango
+      app: cnv-arangodb
   template:
     metadata:
       labels:
-        app: arango 
+        app: cnv-arangodb
     spec:
       containers:
-        - name: arango 
+        - name: cnv-arangodb
           image: arangodb:3.10.0
           imagePullPolicy: IfNotPresent
           env:
