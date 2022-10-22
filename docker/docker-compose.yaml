@@ -9,6 +9,7 @@ services:
       - ./config/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
+      
   cnv-arangodb:
     container_name: cnv-arangodb
     image: arangodb:3.10.0
@@ -20,6 +21,7 @@ services:
     volumes:
       - ./volumes/cnv-arangodb/arangodb3/data:/var/lib/arangodb3
       - ./volumes/cnv-arangodb/arangodb3/apps_container:/var/lib/arangodb3-apps
+
   cnv-middleware:
     container_name: cnv-middleware
     image: europe-west3-docker.pkg.dev/conversation-opensource/cnv-platform-container/cnv-platform-middleware:0.61.0

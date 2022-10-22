@@ -1,0 +1,84 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: cnv-middleware-api 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cnv-middleware-api 
+  template:
+    metadata:
+      labels:
+        app: cnv-middleware-api  
+    spec:
+      containers:
+        - name: cnv-middleware-api  
+          image: europe-west3-docker.pkg.dev/conversation-opensource/cnv-platform-container/cnv-platform-middleware:0.61.0
+          imagePullPolicy: Always
+          env:
+            # ARANGODB
+            - name: ARANGO_HOST
+              value: http://cnv-arangodb:8529
+            - name: ARANGO_USER
+              value: root
+            - name: ARANGO_PASSWORD
+              value: secret
+              ARANGO_DATABASE: conversation
+
+            # Middleware
+            - name: ADMIN_USER
+              value: admin
+            - name: ADMIN_PASSWORD
+              value: secret
+            - name: JWT_EXPIRATION_SECONDS
+              value: 600s
+            - name: TRACK_LIFETIME_MONTHS
+              value: 1
+            - name: ENABLE_CUSTOM_PROPERTIES
+              value: true
+
+            # Node-Red sidecar
+            - name: USE_BUNDLED_NODERED
+              value: true
+            - name: NODERED_WS_CONNECTION
+              value: ws://localhost:8080
+            - name: NODERED_HTTP_CONNECTION
+              value: http://localhost:1880
+            - name: NODERED_HOME_DIR
+              value: /mount
+            - name: NODERED_FLOW_FILE
+              value: flows.json
+            - name: NODERED_ENABLE_PROJECTS
+              value: true
+            - name: NODERED_ENABLE_PALLETE
+              value: true
+            - name: root-redirect
+              value: /admin/
+            - name: cors
+              value: http://localhost
+
+          ports:
+            - containerPort: 3000
+            - containerPort: 1880
+          readinessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 20
+            failureThreshold: 3
+            periodSeconds: 10
+          volumeMounts:
+            - mountPath: "/mount"
+              name: nodered-managed-disk
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "10m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+
+      volumes:
+        - name: nodered-managed-disk
+          persistentVolumeClaim:
+            claimName: nodered-managed-disk-pvc

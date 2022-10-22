@@ -1,0 +1,21 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: cnv-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cnv-client
+  template:
+    metadata:
+      labels:
+        app: cnv-client
+    spec:
+      containers:
+        - name: cnv-client
+          image: europe-west3-docker.pkg.dev/conversation-opensource/cnv-platform-container/cnv-platform:0.33.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          
