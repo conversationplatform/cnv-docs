@@ -1,6 +1,6 @@
 # TinyMe
 
-An open source flow based web chat application for everyone. TinyMe is a web chat on which anyone can put on their own applications and can have multiple purposes and easily collect feeback from the users in an intuitive way. The chat itself is built on a flow driven approach, having multiple widgets with various functionalities that can be tied together trough a flow creating then the desired chat with the client and its different responses based on the user input.
+An open source flow based web chat application for everyone. TinyMe is a web chat on which anyone can put on their own applications and can have multiple purposes and easily collect feedback from the users in an intuitive way. The chat itself is built on a flow driven approach, having multiple widgets with various functionalities that can be tied together trough a flow creating then the desired chat with the client and its different responses based on the user input.
 
 <a name="get-started"></a>
 
@@ -19,7 +19,7 @@ Jump right into the deployment with docker and docker-compose [Deploy on product
 The whole project is divided in to the following repositories:
 
 -   [`cnv-middleware`](https://github.com/VisualVest-GmbH/cnv-middleware)
-    -   this is the comunication channel (backend) of the entire project.
+    -   this is the communication channel (backend) of the entire project.
     -   it is a nodeJS application written in typescript, using the NestJS framework.
     -   for the database, it uses ArangoDB, a document and graph database.
 -   [`cnv-plugins`](https://github.com/VisualVest-GmbH/cnv-plugins)
@@ -81,7 +81,7 @@ Once you have the code on each repository you can test by following the instruct
 ## Deploy on production with docker-compose
 
 This default setup will bring up all the project dependencies including:
-- arangodb
+- Arangodb
 - cnv-react-app
 - cnv-middleware
 
@@ -97,7 +97,7 @@ You will land on the admin dashboard. use the default user and password set on t
 - Password: secret
 
 You can manage all of the settings and flows from the dashboard, but you are free to reach them directly:
-- [app](http://localhost/app/#/default). You may notice the /#/default. The nodered is bundled with a default flow to begin with.
+- [app](http://localhost/app/#/default). You may notice the /#/default. The Node-Red is bundled with a default flow to begin with.
 - have a look around on [Node-red](http://localhost/red/)
 - feel free to explore the middleware [api](http://localhost/api/). There is a lot of cool geek stuff in there 👀
 
@@ -187,6 +187,48 @@ yarn build:prod
 ```
 
 on each project to build it and the built code will be available in the `dist` folder.
+
+## Integrate into your website
+
+In the [examples folder](examples/index.html) you will find a practical example on how to integrate the app into your website. 
+
+Try the examples with [http-server](https://www.npmjs.com/package/http-server) by running
+```
+cd examples && http-server . -p 1234
+```
+Its just a matter of importing the required assets from your publicly available react app:
+
+- start by importing the css from the bundle by importing chat.css into the head of your page
+```html
+    <head>
+        ...
+    <link rel="stylesheet" href="http://localhost/app/chat.css">
+        ...
+    </head>
+
+```
+
+- then import chat.js module on the bottom of your html tag
+```html
+    <body>
+        ...
+    <script type="module" src="http://localhost/app/chat.js"  charset="utf-8"></script>
+        ...
+    </body>
+```
+
+the custom component is now ready to be displayed on your page. Just find a place for it to live and add the component there, like so:
+
+```html
+    <body>
+        ...
+        <footer>
+            ...
+            <conversation-app flow-id="/default" host="http://localhost"></conversation-app>
+        </footer>
+    </body>
+```
+
 
 <a name="expected-contrib"></a>
 
