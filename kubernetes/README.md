@@ -7,6 +7,6 @@ We use kustomize as a suggestion to help you, but its on you to manually change 
 ⚠️ **make sure to**: update the ingress configurations!
 
 ```bash
-kubectl apply -k cnv-platform.yaml
+cd kubernetes && kubectl apply -k .
 ```
 

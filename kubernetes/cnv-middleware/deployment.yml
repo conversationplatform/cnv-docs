@@ -24,7 +24,8 @@ spec:
               value: root
             - name: ARANGO_PASSWORD
               value: secret
-              ARANGO_DATABASE: conversation
+            - name: ARANGO_DATABASE
+              value: conversation
 
             # Middleware
             - name: ADMIN_USER
@@ -34,13 +35,13 @@ spec:
             - name: JWT_EXPIRATION_SECONDS
               value: 600s
             - name: TRACK_LIFETIME_MONTHS
-              value: 1
+              value: "1"
             - name: ENABLE_CUSTOM_PROPERTIES
-              value: true
+              value: "true"
 
             # Node-Red sidecar
             - name: USE_BUNDLED_NODERED
-              value: true
+              value: "true"
             - name: NODERED_WS_CONNECTION
               value: ws://localhost:8080
             - name: NODERED_HTTP_CONNECTION
@@ -50,9 +51,9 @@ spec:
             - name: NODERED_FLOW_FILE
               value: flows.json
             - name: NODERED_ENABLE_PROJECTS
-              value: true
+              value: "true"
             - name: NODERED_ENABLE_PALLETE
-              value: true
+              value: "true"
             - name: root-redirect
               value: /admin/
             - name: cors
