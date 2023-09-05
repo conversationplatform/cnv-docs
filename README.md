@@ -18,18 +18,18 @@ Jump right into the deployment with docker and docker-compose [Deploy on product
 
 The whole project is divided in to the following repositories:
 
--   [`cnv-middleware`](https://github.com/VisualVest-GmbH/cnv-middleware)
+-   [`cnv-middleware`](https://github.com/conversionplatform/cnv-middleware)
     -   this is the communication channel (backend) of the entire project.
     -   it is a nodeJS application written in typescript, using the NestJS framework.
     -   for the database, it uses ArangoDB, a document and graph database.
--   [`cnv-plugins`](https://github.com/VisualVest-GmbH/cnv-plugins)
+-   [`cnv-plugins`](https://github.com/conversionplatform/cnv-plugins)
     -   here we can find the code for each widget for the [Node-RED platform](https://nodered.org/).
--   [`cnv-react-app`](https://github.com/VisualVest-GmbH/cnv-react-app)
+-   [`cnv-react-app`](https://github.com/conversionplatform/cnv-react-app)
     -   the frontend application of the project.
     -   made with react.
-    -   has a limited set of widgets that can be easily extended by installing third party ones such as [cnv-react-plugins](https://github.com/VisualVest-GmbH/cnv-react-plugins).
--   [`cnv-react-plugins`](https://github.com/VisualVest-GmbH/cnv-react-plugins)
-    -   holds the widgets to be used in the [cnv-react-app](https://github.com/VisualVest-GmbH/cnv-react-app) project.
+    -   has a limited set of widgets that can be easily extended by installing third party ones such as [cnv-react-plugins](https://github.com/conversionplatform/cnv-react-plugins).
+-   [`cnv-react-plugins`](https://github.com/conversionplatform/cnv-react-plugins)
+    -   holds the widgets to be used in the [cnv-react-app](https://github.com/conversionplatform/cnv-react-app) project.
     -   you can check the complete widgets list on [storybook](https://conversation-platform.productdock.com/storybook/?path=/story/example-introduction--page).
 
 <a name="what-is-widget"></a>
@@ -42,7 +42,7 @@ A widget is a component with a specific logic for the application to run. Since 
 
 ### Front-end
 
-The front-end code of each widget is present on the [cnv-react-plugins](https://github.com/VisualVest-GmbH/cnv-react-plugins) repository. It is made with React and typescript and Sass for the styling.
+The front-end code of each widget is present on the [cnv-react-plugins](https://github.com/conversionplatform/cnv-react-plugins) repository. It is made with React and typescript and Sass for the styling.
 
 This part is the one responsible for showing the end user what the widget is about as well as handling the interaction with the user and sending data to the [cnv-middleware](#project-structure).
 
@@ -52,7 +52,7 @@ This part is the one responsible for showing the end user what the widget is abo
 
 ### Node-RED
 
-The node-red code of each widget is present on the [cnv-plugins](https://github.com/VisualVest-GmbH/cnv-plugins) repository and each widget has a `.html` and `.js` file following the conventions from [Node-RED platform](https://nodered.org/).
+The node-red code of each widget is present on the [cnv-plugins](https://github.com/conversionplatform/cnv-plugins) repository and each widget has a `.html` and `.js` file following the conventions from [Node-RED platform](https://nodered.org/).
 
 Not only is this responsible for displaying the UI/UX on the node-red application, but it is also responsible for the logic of user response on the widget and redirection of the flow.
 
@@ -64,12 +64,12 @@ Not only is this responsible for displaying the UI/UX on the node-red applicatio
 
 To create a new widget two things are needed:
 
--   create a front-end component on the [cnv-react-plugins](https://github.com/VisualVest-GmbH/cnv-react-plugins) repository.
+-   create a front-end component on the [cnv-react-plugins](https://github.com/conversionplatform/cnv-react-plugins) repository.
 
     -   it has to be a react component.
     -   the styling can be of your choosing but we recommend using [Sass](https://sass-lang.com/).
 
--   create a node-red component on the [cnv-plugins](https://github.com/VisualVest-GmbH/cnv-plugins) repository.
+-   create a node-red component on the [cnv-plugins](https://github.com/conversionplatform/cnv-plugins) repository.
     -   it has to have a `.html` file responsible for the UI/UX on the node Red.
     -   it has to have a `.js` file responsible for the logic of the flow.
     -   both files must adhere to the [Node-RED platform](https://nodered.org/) conventions.
@@ -110,28 +110,28 @@ If you see the image above, that means that you are all set. 😉
 
 To begin with, `git clone` every repository to a folder of your choosing.
 
-#### [`cnv-middleware`](https://github.com/VisualVest-GmbH/cnv-middleware)
+#### [`cnv-middleware`](https://github.com/conversionplatform/cnv-middleware)
 
 ```bash
-git clone git@github.com:VisualVest-GmbH/cnv-middleware.git
+git clone git@github.com:conversionplatform/cnv-middleware.git
 ```
 
-#### [`cnv-plugins`](https://github.com/VisualVest-GmbH/cnv-plugins)
+#### [`cnv-plugins`](https://github.com/conversionplatform/cnv-plugins)
 
 ```bash
-git clone git@github.com:VisualVest-GmbH/cnv-plugins.git
+git clone git@github.com:conversionplatform/cnv-plugins.git
 ```
 
-#### [`cnv-react-app`](https://github.com/VisualVest-GmbH/cnv-react-app)
+#### [`cnv-react-app`](https://github.com/conversionplatform/cnv-react-app)
 
 ```bash
-git clone git@github.com:VisualVest-GmbH/cnv-react-app.git
+git clone git@github.com:conversionplatform/cnv-react-app.git
 ```
 
-#### [`cnv-react-plugins`](https://github.com/VisualVest-GmbH/cnv-react-plugins)
+#### [`cnv-react-plugins`](https://github.com/conversionplatform/cnv-react-plugins)
 
 ```bash
-git clone git@github.com:VisualVest-GmbH/cnv-react-plugins.git
+git clone git@github.com:conversionplatform/cnv-react-plugins.git
 ```
 
 Once you have all the repositories on your machine you'll have to install all the modules. So, for each repo run:
