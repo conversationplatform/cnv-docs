@@ -1,7 +1,4 @@
 # TinyMe
-This project is archived.
-
-Follow the forked one [here](https://github.com/conversationplatform/cnv-docs).
 
 An open source flow based web chat application for everyone. TinyMe is a web chat on which anyone can put on their own applications and can have multiple purposes and easily collect feedback from the users in an intuitive way. The chat itself is built on a flow driven approach, having multiple widgets with various functionalities that can be tied together trough a flow creating then the desired chat with the client and its different responses based on the user input.
 
